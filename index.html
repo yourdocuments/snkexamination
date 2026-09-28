@@ -599,11 +599,11 @@
               MY COURSE
             </span>
 
-            <h2>
+            <h2 id="courseTitle">
               Computer Office Application
             </h2>
 
-            <p>
+            <p id="courseDescription">
               A practical offline course designed to build
               essential computer and office application skills.
             </p>
@@ -615,7 +615,7 @@
                 <i class="fa-solid fa-clock"></i>
                 <div>
                   <span>Duration</span>
-                  <strong>6 Months</strong>
+                  <strong id="courseDuration">6 Months</strong>
                 </div>
               </div>
 
@@ -624,7 +624,7 @@
                 <i class="fa-solid fa-calendar-days"></i>
                 <div>
                   <span>Class Days</span>
-                  <strong>Saturday – Monday</strong>
+                  <strong id="courseDays">Saturday – Monday</strong>
                 </div>
               </div>
 
@@ -633,7 +633,7 @@
                 <i class="fa-solid fa-business-time"></i>
                 <div>
                   <span>Class Time</span>
-                  <strong>4:00 PM – 6:00 PM</strong>
+                  <strong id="courseTime">4:00 PM – 6:00 PM</strong>
                 </div>
               </div>
 
@@ -642,7 +642,7 @@
                 <i class="fa-solid fa-location-dot"></i>
                 <div>
                   <span>Mode</span>
-                  <strong>Offline</strong>
+                  <strong id="courseMode">Offline</strong>
                 </div>
               </div>
 
@@ -1122,7 +1122,7 @@
       student: {
         defaultId: "SNK-1001",
         defaultName: "Student",
-        defaultCourse: "Computer Office Application",
+        defaultCourse: "আপনার কোর্স",
         batch: "Batch 01"
       },
 
@@ -1202,7 +1202,7 @@
         const studentCourse =
           sessionStorage.getItem("snkStudentCourse") ||
           localStorage.getItem("snkStudentCourse") ||
-          "Computer Office Application";
+          "আপনার কোর্স";
 
         return {
           id: studentId,
@@ -1618,6 +1618,14 @@
         setText("dynHeroHeading", d.heroHeading);
         setText("dynHeroHighlight", d.heroHighlight);
         setText("dynHeroDescription", d.heroDescription);
+
+        /* Featured Course (homepage "My Course" showcase) */
+        setText("courseTitle", d.courseName);
+        setText("courseDescription", d.courseDescription);
+        setText("courseDuration", d.courseDuration);
+        setText("courseDays", d.courseDays);
+        setText("courseTime", d.courseTime);
+        setText("courseMode", d.courseMode);
 
         /* Footer */
         setText("dynFooterAbout", d.footerAbout);

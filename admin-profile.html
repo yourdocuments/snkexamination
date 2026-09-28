@@ -512,6 +512,47 @@ body.light .topbar{ background:rgba(255,255,255,.88); }
           </div>
         </div>
 
+        <!-- Featured Course -->
+        <div class="card">
+          <div class="card-head">
+            <span class="emoji">🎓</span>
+            <div>
+              <div class="card-title">Current Course</div>
+              <div class="card-sub">Homepage-এর "My Course" অংশে যেটা দেখাবে — এটা আপনার আসল চলমান কোর্সের তথ্য</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="field">
+              <label>Course-এর নাম</label>
+              <input type="text" id="courseName" placeholder="যেমন: Graphics Design">
+            </div>
+            <div class="field">
+              <label>ছোট বিবরণ</label>
+              <textarea id="courseDescription" placeholder="এই কোর্সে কী শেখানো হয়, এক-দুই লাইনে লিখুন"></textarea>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label>মেয়াদ (Duration)</label>
+                <input type="text" id="courseDuration" placeholder="যেমন: 6 Months">
+              </div>
+              <div class="field">
+                <label>ক্লাসের দিন</label>
+                <input type="text" id="courseDays" placeholder="যেমন: Saturday – Monday">
+              </div>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label>ক্লাসের সময়</label>
+                <input type="text" id="courseTime" placeholder="যেমন: 4:00 PM – 6:00 PM">
+              </div>
+              <div class="field">
+                <label>Mode</label>
+                <input type="text" id="courseMode" placeholder="Offline / Online">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Footer -->
         <div class="card">
           <div class="card-head">
@@ -655,6 +696,7 @@ const FIELDS = [
   "logoUrl",
   "noticeText", "noticeLink",
   "heroBadge", "heroHeading", "heroHighlight", "heroDescription",
+  "courseName", "courseDescription", "courseDuration", "courseDays", "courseTime", "courseMode",
   "footerAbout", "footerCopyright",
   "socialFacebook", "socialYoutube", "socialWhatsapp", "socialInstagram"
 ];
