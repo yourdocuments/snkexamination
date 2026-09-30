@@ -1,69 +1,1406 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#080b14">
 
   <meta
     name="description"
-    content="SNK AI Academy Student Portal - Offline Course Student Portal"
+    content="SNK AI Academy Student Portal - Learn, practice and grow."
   >
 
   <title>SNK AI Academy | Student Portal</title>
 
-  <!-- Google Font -->
+  <!-- =========================================================
+       GOOGLE FONTS
+  ========================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Font Awesome -->
+  <!-- =========================================================
+       FONT AWESOME
+  ========================================================== -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
-  <!-- Main CSS -->
+  <!-- Existing CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- =========================================================
+       ULTRA PREMIUM INDEX UI
+  ========================================================== -->
+  <style>
+
+    :root{
+      --snk-lime:#b7ff00;
+      --snk-lime-soft:rgba(183,255,0,.12);
+      --snk-bg:#070a12;
+      --snk-bg-2:#0b1020;
+      --snk-card:rgba(255,255,255,.055);
+      --snk-border:rgba(255,255,255,.10);
+      --snk-text:#f8fafc;
+      --snk-muted:#9ca7b8;
+      --snk-blue:#5b8cff;
+      --snk-purple:#8b5cf6;
+      --snk-radius:24px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(91,140,255,.10), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(139,92,246,.10), transparent 28%),
+        var(--snk-bg);
+      color:var(--snk-text);
+      font-family:Inter,"Noto Sans Bengali",sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    button,
+    a{
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    /* ========================================================
+       NOTICE TOP BAR
+    ========================================================= */
+
+    #dynNoticeBanner{
+      position:relative;
+      z-index:999;
+      border-bottom:1px solid rgba(183,255,0,.25);
+      box-shadow:0 5px 30px rgba(183,255,0,.08);
+    }
+
+    /* ========================================================
+       PREMIUM HERO
+    ========================================================= */
+
+    .hero-section{
+      position:relative;
+      min-height:760px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      isolation:isolate;
+      background:
+        radial-gradient(circle at 70% 45%, rgba(91,140,255,.12), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(183,255,0,.08), transparent 25%);
+    }
+
+    .hero-section::before{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:520px;
+      left:-280px;
+      top:120px;
+      border-radius:50%;
+      background:rgba(183,255,0,.05);
+      filter:blur(80px);
+      z-index:-1;
+    }
+
+    .hero-section::after{
+      content:"";
+      position:absolute;
+      width:450px;
+      height:450px;
+      right:-200px;
+      bottom:-150px;
+      border-radius:50%;
+      background:rgba(91,140,255,.10);
+      filter:blur(90px);
+      z-index:-1;
+    }
+
+    .hero-container{
+      position:relative;
+      z-index:5;
+    }
+
+    .hero-content{
+      position:relative;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(183,255,0,.07);
+      border:1px solid rgba(183,255,0,.18);
+      color:#d9ff8a;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.05em;
+      backdrop-filter:blur(15px);
+      box-shadow:0 10px 40px rgba(183,255,0,.05);
+    }
+
+    .badge-dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--snk-lime);
+      box-shadow:0 0 14px var(--snk-lime);
+      animation:snkPulse 1.8s infinite;
+    }
+
+    @keyframes snkPulse{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.5);opacity:.6}
+    }
+
+    .hero-content h1{
+      max-width:780px;
+      margin:25px 0 20px;
+      font-size:clamp(48px,7vw,88px);
+      line-height:.98;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .hero-content h1 #dynHeroHighlight{
+      color:var(--snk-lime);
+      text-shadow:0 0 35px rgba(183,255,0,.15);
+    }
+
+    .hero-description{
+      max-width:650px;
+      color:var(--snk-muted);
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    /* ========================================================
+       CLASS NOTICE
+    ========================================================= */
+
+    .class-start-notice{
+      max-width:570px;
+      margin-top:28px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:20px;
+      background:rgba(255,255,255,.045);
+      backdrop-filter:blur(18px);
+      box-shadow:0 18px 60px rgba(0,0,0,.18);
+    }
+
+    .notice-icon{
+      width:48px;
+      height:48px;
+      flex:0 0 48px;
+      border-radius:15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--snk-lime-soft);
+      color:var(--snk-lime);
+      border:1px solid rgba(183,255,0,.15);
+    }
+
+    .notice-content{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+    }
+
+    .notice-content strong{
+      font-size:13px;
+    }
+
+    .notice-content span{
+      color:var(--snk-muted);
+      font-size:13px;
+    }
+
+    /* ========================================================
+       COUNTDOWN
+    ========================================================= */
+
+    .countdown-box{
+      max-width:570px;
+      margin-top:14px;
+      padding:17px;
+      border-radius:20px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.065),
+          rgba(255,255,255,.025)
+        );
+      border:1px solid rgba(255,255,255,.09);
+      backdrop-filter:blur(18px);
+    }
+
+    .countdown-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#dce4ef;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:13px;
+    }
+
+    .countdown-title i{
+      color:var(--snk-lime);
+    }
+
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .count-item{
+      min-height:65px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      border-radius:15px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .count-item strong{
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .count-item span{
+      margin-top:3px;
+      color:#7f8a9d;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .countdown-box.course-started{
+      border-color:rgba(183,255,0,.25);
+      background:rgba(183,255,0,.045);
+    }
+
+    .countdown-box.course-started .count-item strong{
+      color:var(--snk-lime);
+    }
+
+    /* ========================================================
+       HERO BUTTONS
+    ========================================================= */
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:25px;
+    }
+
+    .btn{
+      min-height:50px;
+      padding:0 20px;
+      border-radius:15px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      font-weight:800;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .btn-primary{
+      background:var(--snk-lime);
+      color:#050505;
+      box-shadow:0 12px 35px rgba(183,255,0,.13);
+    }
+
+    .btn-primary:hover{
+      box-shadow:0 16px 45px rgba(183,255,0,.22);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      backdrop-filter:blur(15px);
+    }
+
+    /* ========================================================
+       STUDENT CARD
+    ========================================================= */
+
+    .hero-visual{
+      perspective:1000px;
+    }
+
+    .student-card{
+      position:relative;
+      overflow:hidden;
+      padding:25px;
+      border-radius:30px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.035)
+        );
+      border:1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.38),
+        inset 0 1px rgba(255,255,255,.08);
+      backdrop-filter:blur(25px);
+      transform:rotateY(-3deg) rotateX(2deg);
+      transition:.5s ease;
+    }
+
+    .student-card:hover{
+      transform:rotateY(0) rotateX(0) translateY(-8px);
+    }
+
+    .student-card::before{
+      content:"";
+      position:absolute;
+      width:250px;
+      height:250px;
+      right:-100px;
+      top:-100px;
+      border-radius:50%;
+      background:rgba(183,255,0,.10);
+      filter:blur(30px);
+    }
+
+    .student-card-top,
+    .student-card-info,
+    .student-course-box,
+    .student-card-footer{
+      position:relative;
+      z-index:2;
+    }
+
+    .student-card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .portal-icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--snk-lime);
+      background:rgba(183,255,0,.08);
+      border:1px solid rgba(183,255,0,.16);
+    }
+
+    .active-status{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:#aab5c4;
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .active-status span{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#53e38b;
+      box-shadow:0 0 10px #53e38b;
+    }
+
+    .student-avatar{
+      display:flex;
+      justify-content:center;
+      margin:25px 0 18px;
+    }
+
+    .avatar-ring{
+      width:105px;
+      height:105px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:37px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 30% 20%, #29354b, #0b1020);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 0 0 8px rgba(183,255,0,.04),
+        0 0 50px rgba(183,255,0,.08);
+    }
+
+    .student-card-info{
+      text-align:center;
+    }
+
+    .student-label{
+      color:#78869a;
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.14em;
+    }
+
+    .student-card-info h2{
+      margin:7px 0 5px;
+      font-size:25px;
+    }
+
+    .student-card-info p{
+      margin:0;
+      color:#8591a3;
+      font-size:12px;
+    }
+
+    .student-course-box{
+      margin-top:23px;
+      padding:15px;
+      border-radius:17px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.07);
+    }
+
+    .student-course-box div{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+    }
+
+    .student-course-box span{
+      color:#727e90;
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.1em;
+    }
+
+    .student-course-box strong{
+      font-size:13px;
+    }
+
+    .student-course-box > i{
+      color:var(--snk-lime);
+      font-size:20px;
+    }
+
+    .student-card-footer{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .student-card-footer div{
+      padding:11px 8px;
+      text-align:center;
+      border-radius:13px;
+      background:rgba(255,255,255,.035);
+    }
+
+    .student-card-footer span{
+      display:block;
+      color:#6f7b8e;
+      font-size:9px;
+      margin-bottom:4px;
+    }
+
+    .student-card-footer strong{
+      font-size:11px;
+    }
+
+    /* ========================================================
+       SECTION SYSTEM
+    ========================================================= */
+
+    section:not(.hero-section){
+      position:relative;
+      padding:100px 0;
+    }
+
+    .section-heading{
+      margin-bottom:38px;
+    }
+
+    .section-kicker{
+      display:inline-block;
+      color:var(--snk-lime);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.16em;
+    }
+
+    .section-heading h2{
+      margin:10px 0 10px;
+      font-size:clamp(30px,4vw,48px);
+      letter-spacing:-.035em;
+    }
+
+    .section-heading p{
+      max-width:560px;
+      color:var(--snk-muted);
+      line-height:1.7;
+    }
+
+    /* ========================================================
+       QUICK ACCESS
+    ========================================================= */
+
+    .quick-access-section{
+      background:rgba(255,255,255,.012);
+    }
+
+    .access-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+    }
+
+    .access-card{
+      min-height:145px;
+      position:relative;
+      overflow:hidden;
+      padding:20px;
+      border-radius:21px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.08);
+      transition:.3s ease;
+      color:#fff;
+    }
+
+    .access-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 0 0,rgba(183,255,0,.09),transparent 45%);
+      opacity:0;
+      transition:.3s ease;
+    }
+
+    .access-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(183,255,0,.22);
+      box-shadow:0 25px 60px rgba(0,0,0,.22);
+    }
+
+    .access-card:hover::before{
+      opacity:1;
+    }
+
+    .access-icon{
+      position:relative;
+      z-index:2;
+      width:45px;
+      height:45px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--snk-lime);
+      background:rgba(183,255,0,.07);
+      margin-bottom:20px;
+    }
+
+    .access-card h3{
+      position:relative;
+      z-index:2;
+      margin:0 0 6px;
+      font-size:15px;
+    }
+
+    .access-card p{
+      position:relative;
+      z-index:2;
+      margin:0;
+      color:#808b9d;
+      font-size:11px;
+      line-height:1.5;
+    }
+
+    .card-arrow{
+      position:absolute;
+      right:18px;
+      bottom:18px;
+      color:#5e697a;
+      transition:.3s;
+    }
+
+    .access-card:hover .card-arrow{
+      color:var(--snk-lime);
+      transform:translateX(4px);
+    }
+
+    /* ========================================================
+       COURSE
+    ========================================================= */
+
+    .course-layout{
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:25px;
+      align-items:stretch;
+    }
+
+    .course-content,
+    .course-progress-card{
+      padding:32px;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      backdrop-filter:blur(18px);
+    }
+
+    .course-content h2{
+      margin:10px 0 14px;
+      font-size:clamp(30px,4vw,48px);
+      letter-spacing:-.04em;
+    }
+
+    .course-content > p{
+      max-width:620px;
+      color:var(--snk-muted);
+      line-height:1.8;
+    }
+
+    .course-meta-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin:25px 0;
+    }
+
+    .course-meta-item{
+      display:flex;
+      gap:12px;
+      padding:15px;
+      border-radius:16px;
+      background:rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .course-meta-item > i{
+      color:var(--snk-lime);
+      margin-top:3px;
+    }
+
+    .course-meta-item div{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .course-meta-item span{
+      color:#707c8e;
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .course-meta-item strong{
+      font-size:12px;
+    }
+
+    .course-progress-card{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .progress-card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .progress-card-header span{
+      color:#738095;
+      font-size:9px;
+      letter-spacing:.1em;
+      font-weight:800;
+    }
+
+    .progress-card-header h3{
+      margin:6px 0 0;
+      font-size:45px;
+    }
+
+    .progress-icon{
+      width:55px;
+      height:55px;
+      border-radius:17px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(183,255,0,.07);
+      color:var(--snk-lime);
+    }
+
+    .progress-track{
+      height:9px;
+      margin:25px 0 13px;
+      overflow:hidden;
+      border-radius:99px;
+      background:rgba(255,255,255,.07);
+    }
+
+    .progress-fill{
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--snk-lime),#d8ff75);
+      box-shadow:0 0 20px rgba(183,255,0,.25);
+    }
+
+    .progress-info{
+      display:flex;
+      justify-content:space-between;
+      color:#7c8798;
+      font-size:11px;
+    }
+
+    .progress-info strong{
+      color:#fff;
+    }
+
+    .course-start-mini{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:25px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    .course-start-mini > i{
+      color:var(--snk-lime);
+    }
+
+    .course-start-mini div{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .course-start-mini span{
+      color:#707c8e;
+      font-size:9px;
+    }
+
+    .course-start-mini strong{
+      font-size:12px;
+    }
+
+    /* ========================================================
+       FEATURES
+    ========================================================= */
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+    }
+
+    .feature-card{
+      padding:25px;
+      min-height:170px;
+      border-radius:22px;
+      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      color:#fff;
+      transition:.3s ease;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(183,255,0,.20);
+    }
+
+    .feature-card > i{
+      color:var(--snk-lime);
+      font-size:21px;
+      margin-bottom:28px;
+    }
+
+    .feature-card h3{
+      font-size:14px;
+      margin:0 0 7px;
+    }
+
+    .feature-card p{
+      margin:0;
+      color:#7d889a;
+      font-size:11px;
+      line-height:1.6;
+    }
+
+    /* ========================================================
+       CTA
+    ========================================================= */
+
+    .cta-card{
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+      padding:45px;
+      border-radius:30px;
+      border:1px solid rgba(183,255,0,.15);
+      background:
+        radial-gradient(circle at 80% 20%,rgba(183,255,0,.12),transparent 35%),
+        linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+    }
+
+    .cta-content h2{
+      margin:10px 0;
+      font-size:clamp(28px,4vw,45px);
+      letter-spacing:-.04em;
+    }
+
+    .cta-content p{
+      margin:0;
+      color:#8792a4;
+    }
+
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      flex-shrink:0;
+    }
+
+    /* ========================================================
+       FOOTER
+    ========================================================= */
+
+    .site-footer{
+      border-top:1px solid rgba(255,255,255,.07);
+      background:#05070d;
+    }
+
+    .footer-grid{
+      padding-top:75px;
+      padding-bottom:50px;
+    }
+
+    .footer-brand p{
+      max-width:300px;
+      color:#7d8899;
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .footer-links h3{
+      font-size:12px;
+      margin-bottom:17px;
+    }
+
+    .footer-links a{
+      display:block;
+      color:#778294;
+      font-size:11px;
+      margin:10px 0;
+      transition:.2s;
+    }
+
+    .footer-links a:hover{
+      color:var(--snk-lime);
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-bottom-inner{
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .footer-bottom p{
+      margin:0;
+      color:#687386;
+      font-size:10px;
+    }
+
+    /* ========================================================
+       POPUP NOTICE
+    ========================================================= */
+
+    .snk-notice-overlay{
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(2,5,12,.72);
+      backdrop-filter:blur(12px);
+      opacity:0;
+      visibility:hidden;
+      transition:.3s ease;
+    }
+
+    .snk-notice-overlay.show{
+      opacity:1;
+      visibility:visible;
+    }
+
+    .snk-notice-modal{
+      width:min(500px,100%);
+      position:relative;
+      overflow:hidden;
+      padding:28px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 90% 0,rgba(183,255,0,.12),transparent 32%),
+        linear-gradient(145deg,#111827,#090d16);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 40px 120px rgba(0,0,0,.65),
+        0 0 60px rgba(183,255,0,.06);
+      transform:translateY(25px) scale(.96);
+      transition:.35s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .snk-notice-overlay.show .snk-notice-modal{
+      transform:translateY(0) scale(1);
+    }
+
+    .snk-notice-modal::before{
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      right:-80px;
+      top:-80px;
+      border-radius:50%;
+      background:rgba(183,255,0,.10);
+      filter:blur(25px);
+    }
+
+    .snk-notice-close{
+      position:absolute;
+      top:17px;
+      right:17px;
+      z-index:4;
+      width:38px;
+      height:38px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px;
+      background:rgba(255,255,255,.05);
+      color:#aab4c3;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .snk-notice-close:hover{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      transform:rotate(90deg);
+    }
+
+    .snk-notice-icon{
+      width:58px;
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      background:rgba(183,255,0,.09);
+      border:1px solid rgba(183,255,0,.18);
+      color:var(--snk-lime);
+      font-size:22px;
+      margin-bottom:20px;
+      position:relative;
+    }
+
+    .snk-notice-icon::after{
+      content:"";
+      position:absolute;
+      inset:-6px;
+      border-radius:22px;
+      border:1px solid rgba(183,255,0,.08);
+      animation:noticeRing 2s infinite;
+    }
+
+    @keyframes noticeRing{
+      0%{transform:scale(.92);opacity:.8}
+      100%{transform:scale(1.15);opacity:0}
+    }
+
+    .snk-notice-label{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color:var(--snk-lime);
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      margin-bottom:9px;
+    }
+
+    .snk-notice-label span{
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:var(--snk-lime);
+    }
+
+    .snk-notice-modal h2{
+      margin:0 45px 10px 0;
+      font-size:25px;
+      line-height:1.2;
+      letter-spacing:-.025em;
+    }
+
+    .snk-notice-message{
+      margin:0;
+      color:#aab4c2;
+      font-size:13px;
+      line-height:1.75;
+      white-space:pre-line;
+    }
+
+    .snk-notice-date{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:18px;
+      padding:11px 13px;
+      border-radius:13px;
+      background:rgba(255,255,255,.035);
+      color:#7f8a9b;
+      font-size:10px;
+    }
+
+    .snk-notice-date i{
+      color:var(--snk-lime);
+    }
+
+    .snk-notice-actions{
+      display:flex;
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .snk-notice-actions a,
+    .snk-notice-actions button{
+      flex:1;
+    }
+
+    .snk-notice-skip{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:16px;
+      color:#687486;
+      font-size:10px;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .snk-notice-skip input{
+      accent-color:var(--snk-lime);
+    }
+
+    /* ========================================================
+       MOBILE
+    ========================================================= */
+
+    @media(max-width:1000px){
+
+      .access-grid,
+      .features-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .course-layout{
+        grid-template-columns:1fr;
+      }
+
+      .hero-section{
+        min-height:auto;
+        padding:100px 0;
+      }
+
+      .hero-container{
+        grid-template-columns:1fr !important;
+      }
+
+      .hero-visual{
+        max-width:520px;
+        margin:30px auto 0;
+        width:100%;
+      }
+
+      .cta-card{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      section:not(.hero-section){
+        padding:70px 0;
+      }
+
+      .hero-content h1{
+        font-size:50px;
+      }
+
+      .hero-description{
+        font-size:14px;
+      }
+
+      .countdown{
+        gap:6px;
+      }
+
+      .count-item{
+        min-height:60px;
+      }
+
+      .count-item strong{
+        font-size:17px;
+      }
+
+      .count-item span{
+        font-size:8px;
+      }
+
+      .access-grid,
+      .features-grid{
+        grid-template-columns:1fr;
+      }
+
+      .course-meta-grid{
+        grid-template-columns:1fr;
+      }
+
+      .course-content,
+      .course-progress-card{
+        padding:23px;
+      }
+
+      .cta-card{
+        padding:28px 22px;
+      }
+
+      .footer-bottom-inner{
+        flex-direction:column;
+        justify-content:center;
+        padding:18px 0;
+        text-align:center;
+      }
+
+      .snk-notice-modal{
+        padding:23px;
+        border-radius:23px;
+      }
+
+      .snk-notice-actions{
+        flex-direction:column;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
-  <!-- Dynamic Site Notice (Firestore-driven, hidden by default) -->
+  <!-- =========================================================
+       TOP DYNAMIC NOTICE
+  ========================================================== -->
+
   <div
     id="dynNoticeBanner"
     style="display:none;background:#b7ff00;color:#050505;font-weight:800;font-size:13px;text-align:center;padding:10px 14px;"
   ></div>
 
+
   <!-- =========================================================
-       1. HEADER / NAVIGATION
+       PREMIUM POPUP NOTICE
   ========================================================== -->
+
+  <div
+    class="snk-notice-overlay"
+    id="snkNoticeOverlay"
+    aria-hidden="true"
+  >
+
+    <div
+      class="snk-notice-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="snkNoticeTitle"
+    >
+
+      <button
+        type="button"
+        class="snk-notice-close"
+        id="snkNoticeClose"
+        aria-label="Close Notice"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+
+      <div class="snk-notice-icon">
+        <i class="fa-solid fa-bell"></i>
+      </div>
+
+
+      <div class="snk-notice-label">
+        <span></span>
+        IMPORTANT NOTICE
+      </div>
+
+
+      <h2 id="snkNoticeTitle">
+        Academy Announcement
+      </h2>
+
+
+      <p
+        class="snk-notice-message"
+        id="snkNoticeMessage"
+      >
+        Welcome to SNK AI Academy Student Portal.
+      </p>
+
+
+      <div
+        class="snk-notice-date"
+        id="snkNoticeDate"
+      >
+        <i class="fa-regular fa-calendar"></i>
+        <span>SNK AI Academy</span>
+      </div>
+
+
+      <div class="snk-notice-actions">
+
+        <a
+          href="#"
+          class="btn btn-primary"
+          id="snkNoticeLink"
+          style="display:none;"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+          View Notice
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="snkNoticeDone"
+        >
+          Got it
+        </button>
+
+      </div>
+
+
+      <label class="snk-notice-skip">
+        <input
+          type="checkbox"
+          id="snkNoticeDontShow"
+        >
+        Don't show again today
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
   <header class="site-header" id="siteHeader">
 
     <div class="container nav-container">
 
-      <!-- Logo -->
-      <a href="index.html" class="brand" aria-label="SNK AI Academy Home">
-        <div class="brand-logo" id="dynHeaderLogoBox">
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="SNK AI Academy Home"
+      >
+
+        <div
+          class="brand-logo"
+          id="dynHeaderLogoBox"
+        >
           <span class="logo-fallback-text">SNK</span>
         </div>
 
         <div class="brand-text">
-          <strong id="dynHeaderInstituteName">SNK AI Academy</strong>
+          <strong id="dynHeaderInstituteName">
+            SNK AI Academy
+          </strong>
           <span>Student Portal</span>
         </div>
+
       </a>
 
 
-      <!-- Desktop Navigation -->
-      <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
+      <nav
+        class="main-nav"
+        id="mainNav"
+        aria-label="Main Navigation"
+      >
 
         <a href="index.html" class="nav-link active">
           <i class="fa-solid fa-house"></i>
@@ -128,42 +1465,38 @@
       </nav>
 
 
-      <!-- Right Actions -->
       <div class="nav-actions">
 
-        <!-- Language -->
         <button
           type="button"
           class="nav-action-btn"
           id="languageToggle"
           title="Change Language"
-          aria-label="Change Language"
         >
           <i class="fa-solid fa-language"></i>
           <span>English</span>
         </button>
 
 
-        <!-- Theme -->
         <button
           type="button"
           class="nav-icon-btn"
           id="themeToggle"
           title="Toggle Theme"
-          aria-label="Toggle Theme"
         >
           <i class="fa-solid fa-moon"></i>
         </button>
 
 
-        <!-- Login -->
-        <a href="login.html" class="nav-login-btn">
+        <a
+          href="login.html"
+          class="nav-login-btn"
+        >
           <i class="fa-solid fa-right-to-bracket"></i>
           <span>Login</span>
         </a>
 
 
-        <!-- Mobile Menu -->
         <button
           type="button"
           class="mobile-menu-btn"
@@ -181,16 +1514,21 @@
   </header>
 
 
-
   <!-- =========================================================
-       2. HERO SECTION
+       HERO
   ========================================================== -->
+
   <main>
 
-    <section class="hero-section" id="home">
+    <section
+      class="hero-section"
+      id="home"
+    >
 
-      <!-- CSS Galaxy Background -->
-      <div class="galaxy-bg" aria-hidden="true">
+      <div
+        class="galaxy-bg"
+        aria-hidden="true"
+      >
 
         <span class="galaxy-star star-1"></span>
         <span class="galaxy-star star-2"></span>
@@ -215,30 +1553,38 @@
 
       <div class="container hero-container">
 
-        <!-- Hero Content -->
         <div class="hero-content">
 
           <div class="hero-badge">
             <span class="badge-dot"></span>
-            <span id="dynHeroBadge">Student Portal • Batch 01</span>
+
+            <span id="dynHeroBadge">
+              Student Portal • Batch 01
+            </span>
           </div>
 
 
           <h1>
             <span id="dynHeroHeading">Learn.</span>
-            <span id="dynHeroHighlight">Practice.</span>
+
+            <span id="dynHeroHighlight">
+              Practice.
+            </span>
+
             Grow.
           </h1>
 
 
-          <p class="hero-description" id="dynHeroDescription">
+          <p
+            class="hero-description"
+            id="dynHeroDescription"
+          >
             Welcome to the SNK AI Academy Student Portal.
             Manage your course, assignments, quizzes, results,
             attendance and learning resources from one place.
           </p>
 
 
-          <!-- Class Notice -->
           <div class="class-start-notice">
 
             <div class="notice-icon">
@@ -246,22 +1592,41 @@
             </div>
 
             <div class="notice-content">
-              <strong>Class Started</strong>
-              <span>08 September 2026 • 4:00 PM – 6:00 PM</span>
+
+              <strong>
+                Class Started
+              </strong>
+
+              <span>
+                08 September 2026 • 4:00 PM – 6:00 PM
+              </span>
+
             </div>
 
           </div>
 
 
-          <!-- Countdown -->
-          <div class="countdown-box" id="classCountdownBox">
+          <div
+            class="countdown-box"
+            id="classCountdownBox"
+          >
 
             <div class="countdown-title">
+
               <i class="fa-solid fa-clock"></i>
-              <span id="countdownTitle">Course Status</span>
+
+              <span id="countdownTitle">
+                Course Status
+              </span>
+
             </div>
 
-            <div class="countdown" id="classCountdown">
+
+            <div
+              class="countdown"
+              id="classCountdown"
+            >
+
               <div class="count-item">
                 <strong id="countDays">0</strong>
                 <span>Days</span>
@@ -281,12 +1646,12 @@
                 <strong id="countSeconds">0</strong>
                 <span>Seconds</span>
               </div>
+
             </div>
 
           </div>
 
 
-          <!-- Hero Buttons -->
           <div class="hero-actions">
 
             <a
@@ -312,8 +1677,6 @@
         </div>
 
 
-
-        <!-- Student Visual Card -->
         <div class="hero-visual">
 
           <div class="student-card">
@@ -343,7 +1706,9 @@
 
             <div class="student-card-info">
 
-              <span class="student-label">WELCOME BACK</span>
+              <span class="student-label">
+                WELCOME BACK
+              </span>
 
               <h2 id="heroStudentName">
                 Student
@@ -359,10 +1724,13 @@
             <div class="student-course-box">
 
               <div>
+
                 <span>COURSE</span>
+
                 <strong id="heroCourseName">
-                  Computer Office Application
+                  আপনার কোর্স
                 </strong>
+
               </div>
 
               <i class="fa-solid fa-laptop-code"></i>
@@ -398,26 +1766,29 @@
     </section>
 
 
+    <!-- =======================================================
+         QUICK ACCESS
+    ======================================================== -->
 
-    <!-- =========================================================
-         3. QUICK ACCESS
-    ========================================================== -->
-    <section class="quick-access-section" id="quickAccess">
+    <section
+      class="quick-access-section"
+      id="quickAccess"
+    >
 
       <div class="container">
 
         <div class="section-heading">
 
           <span class="section-kicker">
-            STUDENT AREA
+            STUDENT HUB
           </span>
 
           <h2>
-            Quick Access
+            Everything, One Place.
           </h2>
 
           <p>
-            Everything you need for your course is just one click away.
+            Your essential student tools are always just one click away.
           </p>
 
         </div>
@@ -425,7 +1796,6 @@
 
         <div class="access-grid">
 
-          <!-- Dashboard -->
           <a
             href="student-dashboard.html"
             class="access-card"
@@ -434,17 +1804,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-gauge-high"></i>
             </div>
-
-            <div>
-              <h3>My Dashboard</h3>
-              <p>View your student overview.</p>
-            </div>
-
+            <h3>My Dashboard</h3>
+            <p>View your complete student overview.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Course -->
           <a
             href="courses.html"
             class="access-card"
@@ -453,17 +1818,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-book-open"></i>
             </div>
-
-            <div>
-              <h3>My Course</h3>
-              <p>View modules and course details.</p>
-            </div>
-
+            <h3>My Course</h3>
+            <p>Explore modules and learning content.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Assignment -->
           <a
             href="assignments.html"
             class="access-card"
@@ -472,17 +1832,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-file-pen"></i>
             </div>
-
-            <div>
-              <h3>Assignment</h3>
-              <p>Check tasks and submission status.</p>
-            </div>
-
+            <h3>Assignment</h3>
+            <p>Check tasks and submission status.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Quiz -->
           <a
             href="quiz.html"
             class="access-card"
@@ -491,17 +1846,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-circle-question"></i>
             </div>
-
-            <div>
-              <h3>Quiz</h3>
-              <p>Take your online practice quiz.</p>
-            </div>
-
+            <h3>Quiz</h3>
+            <p>Practice and test your knowledge.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Result -->
           <a
             href="results.html"
             class="access-card"
@@ -510,17 +1860,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-chart-column"></i>
             </div>
-
-            <div>
-              <h3>Result</h3>
-              <p>View quiz and academic results.</p>
-            </div>
-
+            <h3>Results</h3>
+            <p>View your academic performance.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Attendance -->
           <a
             href="student-attendance.html"
             class="access-card"
@@ -529,17 +1874,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-calendar-check"></i>
             </div>
-
-            <div>
-              <h3>Attendance</h3>
-              <p>Track your attendance history.</p>
-            </div>
-
+            <h3>Attendance</h3>
+            <p>Track your class attendance.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Resources -->
           <a
             href="student-resources.html"
             class="access-card"
@@ -548,17 +1888,12 @@
             <div class="access-icon">
               <i class="fa-solid fa-folder-open"></i>
             </div>
-
-            <div>
-              <h3>Resources</h3>
-              <p>Access learning materials.</p>
-            </div>
-
+            <h3>Resources</h3>
+            <p>Access your learning materials.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
 
-          <!-- Notifications -->
           <a
             href="student-notifications.html"
             class="access-card"
@@ -567,12 +1902,8 @@
             <div class="access-icon">
               <i class="fa-solid fa-bell"></i>
             </div>
-
-            <div>
-              <h3>Notifications</h3>
-              <p>Check your latest updates.</p>
-            </div>
-
+            <h3>Notifications</h3>
+            <p>Stay updated with academy news.</p>
             <i class="fa-solid fa-arrow-right card-arrow"></i>
           </a>
 
@@ -583,11 +1914,14 @@
     </section>
 
 
+    <!-- =======================================================
+         COURSE
+    ======================================================== -->
 
-    <!-- =========================================================
-         4. COURSE SECTION
-    ========================================================== -->
-    <section class="course-section" id="course">
+    <section
+      class="course-section"
+      id="course"
+    >
 
       <div class="container">
 
@@ -596,11 +1930,11 @@
           <div class="course-content">
 
             <span class="section-kicker">
-              MY COURSE
+              CURRENT COURSE
             </span>
 
             <h2 id="courseTitle">
-              Computer Office Application
+              কোর্সের নাম শীঘ্রই যুক্ত হবে
             </h2>
 
             <p id="courseDescription">
@@ -615,7 +1949,9 @@
                 <i class="fa-solid fa-clock"></i>
                 <div>
                   <span>Duration</span>
-                  <strong id="courseDuration">6 Months</strong>
+                  <strong id="courseDuration">
+                    6 Months
+                  </strong>
                 </div>
               </div>
 
@@ -624,7 +1960,9 @@
                 <i class="fa-solid fa-calendar-days"></i>
                 <div>
                   <span>Class Days</span>
-                  <strong id="courseDays">Saturday – Monday</strong>
+                  <strong id="courseDays">
+                    Saturday – Monday
+                  </strong>
                 </div>
               </div>
 
@@ -633,7 +1971,9 @@
                 <i class="fa-solid fa-business-time"></i>
                 <div>
                   <span>Class Time</span>
-                  <strong id="courseTime">4:00 PM – 6:00 PM</strong>
+                  <strong id="courseTime">
+                    4:00 PM – 6:00 PM
+                  </strong>
                 </div>
               </div>
 
@@ -642,7 +1982,9 @@
                 <i class="fa-solid fa-location-dot"></i>
                 <div>
                   <span>Mode</span>
-                  <strong id="courseMode">Offline</strong>
+                  <strong id="courseMode">
+                    Offline
+                  </strong>
                 </div>
               </div>
 
@@ -680,11 +2022,13 @@
 
 
             <div class="progress-track">
+
               <div
                 class="progress-fill"
                 id="courseProgressBar"
                 style="width:0%;"
               ></div>
+
             </div>
 
 
@@ -700,7 +2044,9 @@
 
               <div>
                 <span>Course Start</span>
-                <strong>08 September 2026</strong>
+                <strong>
+                  08 September 2026
+                </strong>
               </div>
 
             </div>
@@ -714,26 +2060,29 @@
     </section>
 
 
+    <!-- =======================================================
+         FEATURES
+    ======================================================== -->
 
-    <!-- =========================================================
-         5. STUDENT FEATURES
-    ========================================================== -->
-    <section class="features-section" id="features">
+    <section
+      class="features-section"
+      id="features"
+    >
 
       <div class="container">
 
         <div class="section-heading">
 
           <span class="section-kicker">
-            STUDENT FEATURES
+            YOUR PORTAL
           </span>
 
           <h2>
-            Your Learning, One Portal
+            Your Learning, Your Space.
           </h2>
 
           <p>
-            Manage your complete student journey from one place.
+            Manage your complete student journey from one modern portal.
           </p>
 
         </div>
@@ -759,7 +2108,7 @@
           >
             <i class="fa-solid fa-chalkboard-user"></i>
             <h3>My Class</h3>
-            <p>See your next and regular classes.</p>
+            <p>See your upcoming and regular classes.</p>
           </a>
 
 
@@ -835,10 +2184,10 @@
     </section>
 
 
+    <!-- =======================================================
+         CTA
+    ======================================================== -->
 
-    <!-- =========================================================
-         6. CTA
-    ========================================================== -->
     <section class="cta-section">
 
       <div class="container">
@@ -848,15 +2197,15 @@
           <div class="cta-content">
 
             <span class="section-kicker">
-              STUDENT PORTAL
+              KEEP LEARNING
             </span>
 
             <h2>
-              Ready to continue learning?
+              Ready to continue?
             </h2>
 
             <p>
-              Open your dashboard and manage your complete course journey.
+              Open your dashboard and continue your learning journey.
             </p>
 
           </div>
@@ -893,25 +2242,38 @@
   </main>
 
 
-
   <!-- =========================================================
-       7. FOOTER
+       FOOTER
   ========================================================== -->
+
   <footer class="site-footer">
 
     <div class="container footer-grid">
 
       <div class="footer-brand">
 
-        <a href="index.html" class="brand">
+        <a
+          href="index.html"
+          class="brand"
+        >
 
-          <div class="brand-logo small" id="dynFooterLogoBox">
+          <div
+            class="brand-logo small"
+            id="dynFooterLogoBox"
+          >
             <span class="logo-fallback-text">SNK</span>
           </div>
 
           <div class="brand-text">
-            <strong id="dynFooterInstituteName">SNK AI Academy</strong>
-            <span>Student Portal</span>
+
+            <strong id="dynFooterInstituteName">
+              SNK AI Academy
+            </strong>
+
+            <span>
+              Student Portal
+            </span>
+
           </div>
 
         </a>
@@ -921,6 +2283,7 @@
           Learn practical IT skills and build your future
           with SNK AI Academy.
         </p>
+
 
         <div
           id="dynSocialLinks"
@@ -1033,10 +2396,10 @@
   </footer>
 
 
-
   <!-- =========================================================
-       8. TOAST
+       TOAST
   ========================================================== -->
+
   <div
     class="toast-container"
     id="toastContainer"
@@ -1045,10 +2408,10 @@
   ></div>
 
 
-
   <!-- =========================================================
-       9. LOGIN REQUIRED MESSAGE
+       LOGIN REQUIRED MODAL
   ========================================================== -->
+
   <div
     class="modal-overlay"
     id="loginRequiredModal"
@@ -1070,7 +2433,9 @@
         <i class="fa-solid fa-lock"></i>
       </div>
 
-      <h2>Student Login Required</h2>
+      <h2>
+        Student Login Required
+      </h2>
 
       <p>
         Please login first to access your student portal page.
@@ -1078,7 +2443,10 @@
 
       <div class="modal-actions">
 
-        <a href="login.html" class="btn btn-primary">
+        <a
+          href="login.html"
+          class="btn btn-primary"
+        >
           <i class="fa-solid fa-right-to-bracket"></i>
           Login Now
         </a>
@@ -1098,24 +2466,11 @@
   </div>
 
 
-
   <!-- =========================================================
-       10. PAGE DATA
+       PAGE CONFIG
   ========================================================== -->
+
   <script>
-
-    /*
-      Step 1.19.1
-      Navigation/Data Connection Base
-
-      Existing storage keys:
-      - snkStudentLoggedIn
-      - snkStudentId
-      - snkStudentName
-      - snkStudentCourse
-      - snkTheme
-      - snkLanguage
-    */
 
     window.SNKPortalConfig = {
 
@@ -1127,7 +2482,7 @@
       },
 
       course: {
-        name: "Computer Office Application",
+        name: "কোর্সের নাম শীঘ্রই যুক্ত হবে",
         duration: "6 Months",
         mode: "Offline",
         days: "Saturday – Monday",
@@ -1161,33 +2516,36 @@
   </script>
 
 
-
-  <!-- Main JS -->
+  <!-- Existing Main JS -->
   <script src="script.js"></script>
 
 
   <!-- =========================================================
-       11. INDEX PAGE FALLBACK JS
-       Works together with script.js
+       INDEX PAGE LOGIC
   ========================================================== -->
+
   <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function(){
 
-      /* -------------------------------------------------------
-         Current Year
-      ------------------------------------------------------- */
-      const yearElement = document.getElementById("currentYear");
+      /* ======================================================
+         CURRENT YEAR
+      ====================================================== */
 
-      if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
+      const yearElement =
+        document.getElementById("currentYear");
+
+      if(yearElement){
+        yearElement.textContent =
+          new Date().getFullYear();
       }
 
 
-      /* -------------------------------------------------------
-         Student Data
-      ------------------------------------------------------- */
-      function getStudentData() {
+      /* ======================================================
+         STUDENT DATA
+      ====================================================== */
+
+      function getStudentData(){
 
         const studentId =
           sessionStorage.getItem("snkStudentId") ||
@@ -1205,38 +2563,41 @@
           "আপনার কোর্স";
 
         return {
-          id: studentId,
-          name: studentName,
-          course: studentCourse
+          id:studentId,
+          name:studentName,
+          course:studentCourse
         };
+
       }
 
 
-      function updateStudentVisual() {
+      function updateStudentVisual(){
 
-        const student = getStudentData();
+        const student =
+          getStudentData();
 
-        const nameElement =
+        const name =
           document.getElementById("heroStudentName");
 
-        const idElement =
+        const id =
           document.getElementById("heroStudentId");
 
-        const courseElement =
+        const course =
           document.getElementById("heroCourseName");
 
-
-        if (nameElement) {
-          nameElement.textContent = student.name;
+        if(name){
+          name.textContent =
+            student.name;
         }
 
-        if (idElement) {
-          idElement.textContent =
+        if(id){
+          id.textContent =
             "Student ID: " + student.id;
         }
 
-        if (courseElement) {
-          courseElement.textContent = student.course;
+        if(course){
+          course.textContent =
+            student.course;
         }
 
       }
@@ -1244,12 +2605,13 @@
       updateStudentVisual();
 
 
-      /* -------------------------------------------------------
-         Login Status
-      ------------------------------------------------------- */
-      function isLoggedIn() {
+      /* ======================================================
+         LOGIN
+      ====================================================== */
 
-        return (
+      function isLoggedIn(){
+
+        return(
           sessionStorage.getItem("snkStudentLoggedIn") === "true" ||
           localStorage.getItem("snkStudentLoggedIn") === "true"
         );
@@ -1257,28 +2619,33 @@
       }
 
 
-      /* -------------------------------------------------------
-         Login Required Navigation
-      ------------------------------------------------------- */
       const protectedLinks =
-        document.querySelectorAll("[data-login-required='true']");
+        document.querySelectorAll(
+          "[data-login-required='true']"
+        );
 
 
-      protectedLinks.forEach(function (link) {
+      protectedLinks.forEach(function(link){
 
-        link.addEventListener("click", function (event) {
+        link.addEventListener("click",function(event){
 
-          if (!isLoggedIn()) {
+          if(!isLoggedIn()){
 
             event.preventDefault();
 
             const modal =
-              document.getElementById("loginRequiredModal");
+              document.getElementById(
+                "loginRequiredModal"
+              );
 
-            if (modal) {
+            if(modal){
 
               modal.classList.add("show");
-              modal.setAttribute("aria-hidden", "false");
+
+              modal.setAttribute(
+                "aria-hidden",
+                "false"
+              );
 
             }
 
@@ -1289,190 +2656,210 @@
       });
 
 
-      /* -------------------------------------------------------
-         Login Modal
-      ------------------------------------------------------- */
+      /* ======================================================
+         LOGIN MODAL
+      ====================================================== */
+
       const loginModal =
-        document.getElementById("loginRequiredModal");
+        document.getElementById(
+          "loginRequiredModal"
+        );
 
       const closeLoginModal =
-        document.getElementById("closeLoginModal");
+        document.getElementById(
+          "closeLoginModal"
+        );
 
       const cancelLoginModal =
-        document.getElementById("cancelLoginModal");
+        document.getElementById(
+          "cancelLoginModal"
+        );
 
 
-      function closeModal() {
+      function closeModal(){
 
-        if (!loginModal) return;
+        if(!loginModal) return;
 
         loginModal.classList.remove("show");
-        loginModal.setAttribute("aria-hidden", "true");
+
+        loginModal.setAttribute(
+          "aria-hidden",
+          "true"
+        );
 
       }
 
 
-      if (closeLoginModal) {
-        closeLoginModal.addEventListener("click", closeModal);
+      if(closeLoginModal){
+        closeLoginModal.addEventListener(
+          "click",
+          closeModal
+        );
       }
 
 
-      if (cancelLoginModal) {
-        cancelLoginModal.addEventListener("click", closeModal);
+      if(cancelLoginModal){
+        cancelLoginModal.addEventListener(
+          "click",
+          closeModal
+        );
       }
 
 
-      if (loginModal) {
+      if(loginModal){
 
-        loginModal.addEventListener("click", function (event) {
+        loginModal.addEventListener(
+          "click",
+          function(event){
 
-          if (event.target === loginModal) {
-            closeModal();
+            if(event.target === loginModal){
+              closeModal();
+            }
+
           }
-
-        });
+        );
 
       }
 
 
-      document.addEventListener("keydown", function (event) {
+      /* ======================================================
+         MOBILE NAVIGATION
+      ====================================================== */
 
-        if (event.key === "Escape") {
-          closeModal();
-        }
-
-      });
-
-
-      /* -------------------------------------------------------
-         Local Storage / Session Storage Refresh
-      ------------------------------------------------------- */
-      window.addEventListener("storage", function () {
-
-        updateStudentVisual();
-
-      });
-
-
-      document.addEventListener("visibilitychange", function () {
-
-        if (!document.hidden) {
-          updateStudentVisual();
-        }
-
-      });
-
-
-      /* -------------------------------------------------------
-         Mobile Navigation Fallback
-      ------------------------------------------------------- */
       const mobileMenuBtn =
-        document.getElementById("mobileMenuBtn");
+        document.getElementById(
+          "mobileMenuBtn"
+        );
 
       const mainNav =
-        document.getElementById("mainNav");
+        document.getElementById(
+          "mainNav"
+        );
 
 
-      if (mobileMenuBtn && mainNav) {
+      if(mobileMenuBtn && mainNav){
 
-        mobileMenuBtn.addEventListener("click", function () {
+        mobileMenuBtn.addEventListener(
+          "click",
+          function(){
 
-          const isOpen =
-            mainNav.classList.toggle("mobile-open");
-
-          mobileMenuBtn.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
-
-          mobileMenuBtn.innerHTML = isOpen
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
-
-        });
-
-
-        mainNav.querySelectorAll("a").forEach(function (link) {
-
-          link.addEventListener("click", function () {
-
-            mainNav.classList.remove("mobile-open");
+            const isOpen =
+              mainNav.classList.toggle(
+                "mobile-open"
+              );
 
             mobileMenuBtn.setAttribute(
               "aria-expanded",
-              "false"
+              isOpen ? "true" : "false"
             );
 
             mobileMenuBtn.innerHTML =
-              '<i class="fa-solid fa-bars"></i>';
+              isOpen
+              ? '<i class="fa-solid fa-xmark"></i>'
+              : '<i class="fa-solid fa-bars"></i>';
+
+          }
+        );
+
+
+        mainNav.querySelectorAll("a")
+          .forEach(function(link){
+
+            link.addEventListener(
+              "click",
+              function(){
+
+                mainNav.classList.remove(
+                  "mobile-open"
+                );
+
+                mobileMenuBtn.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+                mobileMenuBtn.innerHTML =
+                  '<i class="fa-solid fa-bars"></i>';
+
+              }
+            );
 
           });
-
-        });
 
       }
 
 
-      /* -------------------------------------------------------
-         Class Status
-      ------------------------------------------------------- */
-      const countdownTitle =
-        document.getElementById("countdownTitle");
+      /* ======================================================
+         COURSE STATUS
+      ====================================================== */
 
+      const countdownTitle =
+        document.getElementById(
+          "countdownTitle"
+        );
 
       const countdownBox =
-        document.getElementById("classCountdownBox");
-
+        document.getElementById(
+          "classCountdownBox"
+        );
 
       const startDate =
-        new Date("2026-09-08T16:00:00");
+        new Date(
+          "2026-09-08T16:00:00"
+        );
 
 
-      function updateCourseStatus() {
+      function updateCourseStatus(){
 
-        const now = new Date();
+        const now =
+          new Date();
 
-        if (now >= startDate) {
+        if(now >= startDate){
 
-          if (countdownTitle) {
+          if(countdownTitle){
             countdownTitle.textContent =
               "Course Started";
           }
 
-          if (countdownBox) {
-            countdownBox.classList.add("course-started");
+          if(countdownBox){
+            countdownBox.classList.add(
+              "course-started"
+            );
           }
 
-          const days =
-            document.getElementById("countDays");
+          [
+            "countDays",
+            "countHours",
+            "countMinutes",
+            "countSeconds"
+          ].forEach(function(id){
 
-          const hours =
-            document.getElementById("countHours");
+            const el =
+              document.getElementById(id);
 
-          const minutes =
-            document.getElementById("countMinutes");
+            if(el){
+              el.textContent = "✓";
+            }
 
-          const seconds =
-            document.getElementById("countSeconds");
-
-
-          if (days) days.textContent = "✓";
-          if (hours) hours.textContent = "✓";
-          if (minutes) minutes.textContent = "✓";
-          if (seconds) seconds.textContent = "✓";
+          });
 
           return;
-
         }
 
+
         const difference =
-          startDate.getTime() - now.getTime();
+          startDate.getTime() -
+          now.getTime();
 
         const totalSeconds =
-          Math.floor(difference / 1000);
+          Math.floor(
+            difference / 1000
+          );
 
         const daysValue =
-          Math.floor(totalSeconds / 86400);
+          Math.floor(
+            totalSeconds / 86400
+          );
 
         const hoursValue =
           Math.floor(
@@ -1489,183 +2876,687 @@
 
 
         const days =
-          document.getElementById("countDays");
+          document.getElementById(
+            "countDays"
+          );
 
         const hours =
-          document.getElementById("countHours");
+          document.getElementById(
+            "countHours"
+          );
 
         const minutes =
-          document.getElementById("countMinutes");
+          document.getElementById(
+            "countMinutes"
+          );
 
         const seconds =
-          document.getElementById("countSeconds");
+          document.getElementById(
+            "countSeconds"
+          );
 
 
-        if (days) {
-          days.textContent = daysValue;
-        }
+        if(days)
+          days.textContent =
+            daysValue;
 
-        if (hours) {
-          hours.textContent = hoursValue;
-        }
+        if(hours)
+          hours.textContent =
+            hoursValue;
 
-        if (minutes) {
-          minutes.textContent = minutesValue;
-        }
+        if(minutes)
+          minutes.textContent =
+            minutesValue;
 
-        if (seconds) {
-          seconds.textContent = secondsValue;
-        }
+        if(seconds)
+          seconds.textContent =
+            secondsValue;
 
       }
 
 
       updateCourseStatus();
 
-      setInterval(updateCourseStatus, 1000);
+      setInterval(
+        updateCourseStatus,
+        1000
+      );
 
 
-      /* -------------------------------------------------------
-         Smooth Internal Navigation
-      ------------------------------------------------------- */
-      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      /* ======================================================
+         STORAGE REFRESH
+      ====================================================== */
 
-        link.addEventListener("click", function (event) {
+      window.addEventListener(
+        "storage",
+        updateStudentVisual
+      );
 
-          const targetId =
-            this.getAttribute("href");
+      document.addEventListener(
+        "visibilitychange",
+        function(){
 
-          if (!targetId || targetId === "#") {
-            return;
+          if(!document.hidden){
+            updateStudentVisual();
           }
 
-          const target =
-            document.querySelector(targetId);
+        }
+      );
 
-          if (target) {
 
-            event.preventDefault();
+      /* ======================================================
+         SMOOTH NAVIGATION
+      ====================================================== */
 
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
+      document.querySelectorAll(
+        'a[href^="#"]'
+      ).forEach(function(link){
+
+        link.addEventListener(
+          "click",
+          function(event){
+
+            const targetId =
+              this.getAttribute("href");
+
+            if(
+              !targetId ||
+              targetId === "#"
+            ){
+              return;
+            }
+
+            const target =
+              document.querySelector(
+                targetId
+              );
+
+            if(target){
+
+              event.preventDefault();
+
+              target.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+              });
+
+            }
 
           }
-
-        });
+        );
 
       });
+
+
+      /* ======================================================
+         PREMIUM NOTICE POPUP
+      ====================================================== */
+
+      window.SNKOpenNotice =
+        function(options){
+
+          const overlay =
+            document.getElementById(
+              "snkNoticeOverlay"
+            );
+
+          if(!overlay) return;
+
+          if(options){
+
+            if(options.title){
+              document.getElementById(
+                "snkNoticeTitle"
+              ).textContent =
+                options.title;
+            }
+
+            if(options.message){
+              document.getElementById(
+                "snkNoticeMessage"
+              ).textContent =
+                options.message;
+            }
+
+            if(options.date){
+
+              document.getElementById(
+                "snkNoticeDate"
+              ).innerHTML =
+                '<i class="fa-regular fa-calendar"></i>' +
+                '<span>' +
+                options.date +
+                '</span>';
+
+            }
+
+            const link =
+              document.getElementById(
+                "snkNoticeLink"
+              );
+
+            if(options.link){
+
+              link.href =
+                options.link;
+
+              link.style.display =
+                "inline-flex";
+
+            }else{
+
+              link.style.display =
+                "none";
+
+            }
+
+          }
+
+
+          overlay.classList.add("show");
+
+          overlay.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          document.body.style.overflow =
+            "hidden";
+
+        };
+
+
+      function closeNotice(){
+
+        const overlay =
+          document.getElementById(
+            "snkNoticeOverlay"
+          );
+
+        if(!overlay) return;
+
+        const dontShow =
+          document.getElementById(
+            "snkNoticeDontShow"
+          );
+
+
+        if(
+          dontShow &&
+          dontShow.checked
+        ){
+
+          const today =
+            new Date()
+              .toISOString()
+              .slice(0,10);
+
+          localStorage.setItem(
+            "snkNoticeHiddenDate",
+            today
+          );
+
+        }
+
+
+        overlay.classList.remove(
+          "show"
+        );
+
+        overlay.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        document.body.style.overflow =
+          "";
+
+      }
+
+
+      document.getElementById(
+        "snkNoticeClose"
+      )?.addEventListener(
+        "click",
+        closeNotice
+      );
+
+
+      document.getElementById(
+        "snkNoticeDone"
+      )?.addEventListener(
+        "click",
+        closeNotice
+      );
+
+
+      document.getElementById(
+        "snkNoticeOverlay"
+      )?.addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            this
+          ){
+            closeNotice();
+          }
+
+        }
+      );
+
+
+      document.addEventListener(
+        "keydown",
+        function(event){
+
+          if(event.key === "Escape"){
+
+            const overlay =
+              document.getElementById(
+                "snkNoticeOverlay"
+              );
+
+            if(
+              overlay &&
+              overlay.classList.contains(
+                "show"
+              )
+            ){
+              closeNotice();
+            }
+
+            closeModal();
+
+          }
+
+        }
+      );
 
     });
 
   </script>
 
+
   <!-- =========================================================
-       DYNAMIC SITE SETTINGS (Firestore)
-       admin-profile.html থেকে save করা settings এখান থেকেই
-       homepage-এ apply হয়। কোনো field খালি থাকলে সেটা বদলানো
-       হয় না, ডিফল্ট লেখাই থেকে যায়।
+       FIRESTORE DYNAMIC SITE SETTINGS
   ========================================================== -->
+
   <script type="module">
-    import { db } from "./firebase-config.js";
+
+    import { db }
+      from "./firebase-config.js";
+
     import {
       doc,
       getDoc
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+    }
+    from
+      "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-    function setText(id, value){
+
+    function setText(id,value){
+
       if(!value) return;
-      const el = document.getElementById(id);
-      if(el) el.textContent = value;
+
+      const el =
+        document.getElementById(id);
+
+      if(el){
+        el.textContent =
+          value;
+      }
+
     }
 
-    function setLogo(boxId, url){
+
+    function setLogo(boxId,url){
+
       if(!url) return;
-      const box = document.getElementById(boxId);
-      if(box) box.innerHTML = `<img src="${url}" alt="Logo" style="width:100%;height:100%;object-fit:contain;">`;
+
+      const box =
+        document.getElementById(
+          boxId
+        );
+
+      if(box){
+
+        box.innerHTML =
+          `<img
+            src="${url}"
+            alt="Logo"
+            style="
+              width:100%;
+              height:100%;
+              object-fit:contain;
+            "
+          >`;
+
+      }
+
     }
+
 
     async function applySiteSettings(){
+
       try{
-        const snap = await getDoc(doc(db, "siteSettings", "main"));
-        if(!snap.exists()) return;
 
-        const d = snap.data();
+        const snap =
+          await getDoc(
+            doc(
+              db,
+              "siteSettings",
+              "main"
+            )
+          );
 
-        /* Notice banner */
-        if(d.noticeActive && d.noticeText){
-          const banner = document.getElementById("dynNoticeBanner");
+
+        if(!snap.exists()){
+          return;
+        }
+
+
+        const d =
+          snap.data();
+
+
+        /* ==================================================
+           NOTICE
+        ================================================== */
+
+        if(
+          d.noticeActive &&
+          d.noticeText
+        ){
+
+          const banner =
+            document.getElementById(
+              "dynNoticeBanner"
+            );
+
+
           if(banner){
+
             if(d.noticeLink){
+
               banner.innerHTML =
-                `<a href="${d.noticeLink}" style="color:#050505;text-decoration:underline;">${d.noticeText}</a>`;
+                `<a
+                  href="${d.noticeLink}"
+                  style="
+                    color:#050505;
+                    text-decoration:underline;
+                  "
+                >
+                  ${d.noticeText}
+                </a>`;
+
             }else{
-              banner.textContent = d.noticeText;
+
+              banner.textContent =
+                d.noticeText;
+
             }
-            banner.style.display = "block";
+
+            banner.style.display =
+              "block";
+
           }
+
+
+          /* ----------------------------------------------
+             Premium popup
+          ---------------------------------------------- */
+
+          const today =
+            new Date()
+              .toISOString()
+              .slice(0,10);
+
+          const hiddenDate =
+            localStorage.getItem(
+              "snkNoticeHiddenDate"
+            );
+
+
+          if(hiddenDate !== today){
+
+            setTimeout(function(){
+
+              if(
+                window.SNKOpenNotice
+              ){
+
+                window.SNKOpenNotice({
+
+                  title:
+                    d.noticeTitle ||
+                    "Academy Announcement",
+
+                  message:
+                    d.noticeText,
+
+                  date:
+                    d.noticeDate ||
+                    "SNK AI Academy",
+
+                  link:
+                    d.noticeLink ||
+                    ""
+
+                });
+
+              }
+
+            },1200);
+
+          }
+
         }
 
-        /* Institute name + logo (header + footer) */
-        setText("dynHeaderInstituteName", d.instituteName);
-        setText("dynFooterInstituteName", d.instituteName);
-        setLogo("dynHeaderLogoBox", d.logoUrl);
-        setLogo("dynFooterLogoBox", d.logoUrl);
 
-        /* Hero */
-        setText("dynHeroBadge", d.heroBadge);
-        setText("dynHeroHeading", d.heroHeading);
-        setText("dynHeroHighlight", d.heroHighlight);
-        setText("dynHeroDescription", d.heroDescription);
+        /* ==================================================
+           INSTITUTE
+        ================================================== */
 
-        /* Featured Course (homepage "My Course" showcase) */
-        setText("courseTitle", d.courseName);
-        setText("courseDescription", d.courseDescription);
-        setText("courseDuration", d.courseDuration);
-        setText("courseDays", d.courseDays);
-        setText("courseTime", d.courseTime);
-        setText("courseMode", d.courseMode);
+        setText(
+          "dynHeaderInstituteName",
+          d.instituteName
+        );
 
-        /* Footer */
-        setText("dynFooterAbout", d.footerAbout);
+        setText(
+          "dynFooterInstituteName",
+          d.instituteName
+        );
+
+
+        setLogo(
+          "dynHeaderLogoBox",
+          d.logoUrl
+        );
+
+        setLogo(
+          "dynFooterLogoBox",
+          d.logoUrl
+        );
+
+
+        /* ==================================================
+           HERO
+        ================================================== */
+
+        setText(
+          "dynHeroBadge",
+          d.heroBadge
+        );
+
+        setText(
+          "dynHeroHeading",
+          d.heroHeading
+        );
+
+        setText(
+          "dynHeroHighlight",
+          d.heroHighlight
+        );
+
+        setText(
+          "dynHeroDescription",
+          d.heroDescription
+        );
+
+
+        /* ==================================================
+           COURSE
+        ================================================== */
+
+        setText(
+          "courseTitle",
+          d.courseName
+        );
+
+        setText(
+          "courseDescription",
+          d.courseDescription
+        );
+
+        setText(
+          "courseDuration",
+          d.courseDuration
+        );
+
+        setText(
+          "courseDays",
+          d.courseDays
+        );
+
+        setText(
+          "courseTime",
+          d.courseTime
+        );
+
+        setText(
+          "courseMode",
+          d.courseMode
+        );
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        setText(
+          "dynFooterAbout",
+          d.footerAbout
+        );
+
+
         if(d.footerCopyright){
-          const cp = document.getElementById("dynFooterCopyright");
-          if(cp) cp.textContent = d.footerCopyright;
+
+          const cp =
+            document.getElementById(
+              "dynFooterCopyright"
+            );
+
+          if(cp){
+
+            cp.textContent =
+              d.footerCopyright;
+
+          }
+
         }
 
-        /* Social links */
-        const socialWrap = document.getElementById("dynSocialLinks");
+
+        /* ==================================================
+           SOCIAL LINKS
+        ================================================== */
+
+        const socialWrap =
+          document.getElementById(
+            "dynSocialLinks"
+          );
+
+
         if(socialWrap){
-          const links = [
-            { url: d.socialFacebook, icon: "📘", label: "Facebook" },
-            { url: d.socialYoutube, icon: "▶️", label: "YouTube" },
-            { url: d.socialWhatsapp, icon: "💬", label: "WhatsApp" },
-            { url: d.socialInstagram, icon: "📸", label: "Instagram" }
-          ].filter(item => item.url);
 
-          socialWrap.innerHTML = links.map(item => `
-            <a
-              href="${item.url}"
-              target="_blank"
-              rel="noopener"
-              aria-label="${item.label}"
-              style="
-                width:36px;height:36px;border-radius:10px;
-                display:flex;align-items:center;justify-content:center;
-                background:rgba(183,255,0,.1);border:1px solid rgba(183,255,0,.25);
-                font-size:15px;
-              "
-            >${item.icon}</a>
-          `).join("");
+          const links = [
+
+            {
+              url:d.socialFacebook,
+              icon:"<i class='fa-brands fa-facebook-f'></i>",
+              label:"Facebook"
+            },
+
+            {
+              url:d.socialYoutube,
+              icon:"<i class='fa-brands fa-youtube'></i>",
+              label:"YouTube"
+            },
+
+            {
+              url:d.socialWhatsapp,
+              icon:"<i class='fa-brands fa-whatsapp'></i>",
+              label:"WhatsApp"
+            },
+
+            {
+              url:d.socialInstagram,
+              icon:"<i class='fa-brands fa-instagram'></i>",
+              label:"Instagram"
+            }
+
+          ].filter(
+            item => item.url
+          );
+
+
+          socialWrap.innerHTML =
+            links.map(
+              item => `
+
+                <a
+                  href="${item.url}"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="${item.label}"
+                  style="
+                    width:38px;
+                    height:38px;
+                    border-radius:12px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    background:rgba(183,255,0,.07);
+                    border:1px solid rgba(183,255,0,.15);
+                    color:#b7ff00;
+                    font-size:14px;
+                    transition:.2s;
+                  "
+                >
+                  ${item.icon}
+                </a>
+
+              `
+            ).join("");
+
         }
+
 
       }catch(error){
-        console.warn("Site settings load skipped:", error);
+
+        console.warn(
+          "Site settings load skipped:",
+          error
+        );
+
       }
+
     }
 
+
     applySiteSettings();
+
   </script>
 
 </body>
